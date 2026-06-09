@@ -1,0 +1,18 @@
+name: CI
+
+on:
+  push:
+    branches: ["batch-changes/**"]
+  pull_request:
+    branches: [main, "batch-changes/**"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # Requires manual approval via the "needs-approval" environment.
+    # The job stays in a "Waiting" / pending state indefinitely
+    # until a required reviewer approves it or it is cancelled.
+    environment: needs-approval
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Approved — this only runs after manual approval."
